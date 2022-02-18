@@ -4,17 +4,22 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Game {
-    private final ArrayList<Player> players = new ArrayList<>();
-    private boolean is_head = false;
-    private final Random rand = new Random();    
+    private final ArrayList<Player> players = new ArrayList<>();   
 
+    /**
+     * Teste si les joueurs sont prêt
+     * @return boolean
+     */
     private boolean allPlayersReady() {
         return players.stream().allMatch(p -> (p == null || p.isReady()));
     }
 
+    /**
+     * Trouve le joueur par rapport à son id
+     * @return int
+     */
     private int findPlayerId() {
         for(int i=0; i<players.size(); i++) {
             if(players.get(i) == null) {
@@ -25,6 +30,10 @@ public class Game {
         return players.size();
     }
     
+    /**
+     * Enregistre les joueurs (max 2)
+     * @param sock
+     */
     public void registerPlayer(Socket sock) {
         int id = findPlayerId();
         Player player = new Player(this, id, sock);
@@ -33,10 +42,6 @@ public class Game {
         
         if(players.size() == 3) {
         	System.out.println("Il y a trop de joueur, vous ne pouvez vous connecter.");
-        	
-        	// Problème pour 3
-//        	System.exit (0);
-        	
         	return;
         }
 
@@ -44,26 +49,14 @@ public class Game {
         players.set(id-1, player);
         player.start();
     }
-//    public synchronized boolean waitHeadOrTail() throws InterruptedException {
-//        if(allPlayersReady()) {
-//            notifyAll();
-//            is_head = rand.nextInt(2) != 0;
-//            System.out.printf("All %d played, got %s\n", players.size(), is_head ? "HEAD" : "TAIL");
-//        }
-//        else {
-//            wait();
-//        }
-//        return is_head;
-//    }
     
-//	public boolean resultat(int _choice) {
-//		// TODO Auto-generated method stub
-//		return false;
-//	}
-    
+    /**
+     * Attend que tous les joueurs aient joués puis donne le résultat
+     * @param choice
+     * @return int
+     * @throws InterruptedException
+     */
     public synchronized int resultat(int choice) throws InterruptedException {
-    	
-    	boolean win;
     	
         if(allPlayersReady()) {
             notifyAll();
@@ -76,42 +69,17 @@ public class Game {
             wait();
         }
         
-        int n = 0;
+        int score = 0;
         for (Player player : players) {
 			
-			if(player.loose(choice)) {
-				n++;
+        	//Compte le nombre joueur qui a perdu
+			if(player.isLoose(choice)) {
+				score++;
 			}
 		}
         
-        System.out.println("Passe ??");
-        
-        return n;
+        return score;
     }
-    
-    
-    
-    
-    
-    public synchronized boolean waitHeadOrTail() throws InterruptedException {
-    	
-        if(allPlayersReady()) {
-            notifyAll();
-            
-            is_head = rand.nextInt(2) != 0;
-            
-            
-            
-            System.out.printf("All %d played, got %s\n", players.size(), is_head ? "HEAD" : "TAIL");
-        }
-        else {
-        	System.out.println("En attente de joueur.");
-            wait();
-        }
-        return is_head;
-    }
-    
-    
     
     public void write(DataOutputStream writer) throws IOException {
     	//Gagné ?

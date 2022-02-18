@@ -62,22 +62,17 @@ public class JHeadOrTailClient {
 				writer.writeInt(choix);
 				writer.flush();
 				
-//				try {
-//				    while (true) 
-//				        System.out.println("reader.readInt() : "+reader.readInt());
-//				} catch (EOFException ignored) {
-//				    System.out.println("[EOF]");
-//				}
+				int idJoueur = reader.readInt();
+				System.out.println("id joueur : "+idJoueur);
 				
-//				System.out.println("passe : ");
-				
-				int lecturePremier = reader.readInt();
-				System.out.println("lecturePremier : "+lecturePremier);
 				int score_num = reader.readInt();
 				System.out.println("score_num : "+score_num);
+				
+				int lectureAutre = reader.readInt();
+				System.out.println("lectureAutre : "+lectureAutre);
 
 				//Faire une enumération
-				//                System.out.printf("It was %s, here are the scores :\n", choix ? "HEAD" : "TAIL");
+				//System.out.printf("It was %s, here are the scores :\n", choix ? "HEAD" : "TAIL");
 				System.out.printf("It was %s, here are the scores :\n", String.valueOf(choix));
 
 				for (var i = 1; i <= score_num; i++) {

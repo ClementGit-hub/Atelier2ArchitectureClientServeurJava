@@ -51,7 +51,7 @@ public class Player extends Thread {
     public int getPlayerId(){
     	return _id;
     }
-	public boolean loose(int choice) {
+	public boolean isLoose(int choice) {
 		//A revoir 
 		return (_choice+1)%3 == choice;
 	}
