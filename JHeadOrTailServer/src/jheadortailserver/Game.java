@@ -84,17 +84,16 @@ public class Game {
     public void write(DataOutputStream writer) throws IOException {
         
         writer.writeInt(players.size());
-        System.out.println("Nombre de joueurs : "+players.size());
         
         for (Player player : players) {
-        	System.out.println("Score : "+player.getScore());
             writer.writeInt(player == null ? -1 : player.getScore());
             
-            //Réinitialise les scores pour attendre les joueurs lors de la prochaine partie
+			//Réinitialise les scores pour attendre les joueurs lors de la prochaine partie
             player.initScore();
         }
         writer.flush();
     }
+    
     public void onLeave(int id) {
         System.out.printf("- Le joueur %d a quitté la partie\n", id);
         players.set(id - 1, null);

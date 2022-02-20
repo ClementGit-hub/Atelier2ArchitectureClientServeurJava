@@ -46,6 +46,8 @@ public class Player extends Thread {
                 _score += _game.resultat(_choice);
 
                 _game.write(writer);
+                
+                System.out.println("Joueur : "+this._id+" Score : "+this._score);
             }
         }
         catch(InterruptedException | IOException e){

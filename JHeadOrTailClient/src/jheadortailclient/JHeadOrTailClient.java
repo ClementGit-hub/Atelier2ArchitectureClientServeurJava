@@ -2,7 +2,6 @@ package jheadortailclient;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.EOFException;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -53,8 +52,6 @@ public class JHeadOrTailClient {
 					System.out.println("Aurevoir");
 					break;
 				}   
-				
-				//Revoir readme : 2 joueurs
 				
 				System.out.println("Choisissez votre main : 0: pierre 1: papier 2: ciseaux");
 				int choix = sc.nextInt();

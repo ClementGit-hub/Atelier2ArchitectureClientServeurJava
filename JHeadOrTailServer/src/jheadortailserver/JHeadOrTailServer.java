@@ -13,7 +13,7 @@ public class JHeadOrTailServer {
         ServerSocket sock_listen = null;
         
         try {
-        	sock_listen = new ServerSocket(PORT);
+        	sock_listen = new ServerSocket(PORT); 
             
             System.out.printf("Ecoute du port : %d\n", PORT);
             
