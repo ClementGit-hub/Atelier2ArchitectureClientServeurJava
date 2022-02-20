@@ -18,11 +18,16 @@ public class Player extends Thread {
         _id = id;
         _sock = sock;
     }
+    
     public boolean isReady() {
         return _choice != -1;
     }
+    
+    /**
+     * Donne le score
+     * @return
+     */
     public int getScore() { 
-    	System.out.println("_score : "+_score);
         return _score;
     }    
     @Override
@@ -51,8 +56,12 @@ public class Player extends Thread {
     public int getPlayerId(){
     	return _id;
     }
+    
 	public boolean isLoose(int choice) {
-		//A revoir 
 		return (_choice+1)%3 == choice;
+	}
+	
+	public void initScore() {
+		this._choice = -1;
 	}
 }

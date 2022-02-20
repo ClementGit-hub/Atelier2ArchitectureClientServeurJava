@@ -58,33 +58,24 @@ public class JHeadOrTailClient {
 				
 				System.out.println("Choisissez votre main : 0: pierre 1: papier 2: ciseaux");
 				int choix = sc.nextInt();
-				System.out.println("choix joueur : "+choix);
+				System.out.println("Choix joueur : "+choix);
 				
 				writer.writeInt(choix);
 				writer.flush();
 				 
-				int idJoueur = reader.readInt();
-				System.out.println("id joueur : "+idJoueur);
-				
-				int score_num = reader.readInt();
-				System.out.println("score_num : "+score_num);
-				
-				int lectureAutre = reader.readInt();
-				System.out.println("lectureAutre : "+lectureAutre);
+				int nbJoueur = reader.readInt();
+				System.out.println("Nombre de joueurs : "+nbJoueur);
 
 				System.out.printf("Le choix était %s, voici les scores :\n", String.valueOf(choix));
 
-				for (var i = 1; i <= score_num; i++) { 
+				for (var i = 1; i <= nbJoueur; i++) { 
 					int score = reader.readInt();
 
 					System.out.printf("- Le joueur %d%s : %s\n",
 							i, i == num ? " (toi)" : "",
 									score >= 0 ? Integer.toString(score) : "-"
 							);
-					System.out.println(String.valueOf(choix));
 				}	
-
-
 			}
 		}
 		catch(IOException e) {

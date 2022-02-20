@@ -15,7 +15,7 @@ public class JHeadOrTailServer {
         try {
         	sock_listen = new ServerSocket(PORT);
             
-            System.out.printf("Listening on port %d\n", PORT);
+            System.out.printf("Ecoute du port : %d\n", PORT);
             
             for (; ; ) {
                 game.registerPlayer(sock_listen.accept());
