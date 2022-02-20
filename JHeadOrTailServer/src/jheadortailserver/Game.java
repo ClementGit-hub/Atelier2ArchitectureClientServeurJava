@@ -45,7 +45,7 @@ public class Game {
         	return;
         }
 
-        System.out.printf("- Player %d arrived\n", id);
+        System.out.printf("- Le joueur %d est arrivé \n", id);
         players.set(id-1, player);
         player.start();
     }
@@ -61,7 +61,7 @@ public class Game {
         if(allPlayersReady()) {
             notifyAll();
             
-            System.out.printf("All %d played, got \n", players.size());
+            System.out.printf("Les %d joueurs ont joués \n", players.size());
             
         }
         else {

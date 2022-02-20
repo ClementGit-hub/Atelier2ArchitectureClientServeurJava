@@ -58,10 +58,11 @@ public class JHeadOrTailClient {
 				
 				System.out.println("Choisissez votre main : 0: pierre 1: papier 2: ciseaux");
 				int choix = sc.nextInt();
+				System.out.println("choix joueur : "+choix);
 				
 				writer.writeInt(choix);
 				writer.flush();
-				
+				 
 				int idJoueur = reader.readInt();
 				System.out.println("id joueur : "+idJoueur);
 				
@@ -71,17 +72,16 @@ public class JHeadOrTailClient {
 				int lectureAutre = reader.readInt();
 				System.out.println("lectureAutre : "+lectureAutre);
 
-				//Faire une enumération
-				//System.out.printf("It was %s, here are the scores :\n", choix ? "HEAD" : "TAIL");
-				System.out.printf("It was %s, here are the scores :\n", String.valueOf(choix));
+				System.out.printf("Le choix était %s, voici les scores :\n", String.valueOf(choix));
 
 				for (var i = 1; i <= score_num; i++) {
 					int score = reader.readInt();
 
-					System.out.printf("- Player %d%s : %s\n",
-							i, i == num ? " (you)" : "",
+					System.out.printf("- Le joueur %d%s : %s\n",
+							i, i == num ? " (toi)" : "",
 									score >= 0 ? Integer.toString(score) : "-"
 							);
+					System.out.println(String.valueOf(choix));
 				}	
 
 
