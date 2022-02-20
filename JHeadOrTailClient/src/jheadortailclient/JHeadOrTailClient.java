@@ -74,7 +74,7 @@ public class JHeadOrTailClient {
 
 				System.out.printf("Le choix était %s, voici les scores :\n", String.valueOf(choix));
 
-				for (var i = 1; i <= score_num; i++) {
+				for (var i = 1; i <= score_num; i++) { 
 					int score = reader.readInt();
 
 					System.out.printf("- Le joueur %d%s : %s\n",
