@@ -22,14 +22,7 @@ public class Player extends Thread {
     public boolean isReady() {
         return _choice != -1;
     }
-    
-    /**
-     * Donne le score
-     * @return
-     */
-    public int getScore() { 
-        return _score;
-    }    
+      
     @Override
     public void run() {
         try {
@@ -47,7 +40,7 @@ public class Player extends Thread {
 
                 _game.write(writer);
                 
-                System.out.println("Joueur : "+this._id+" Score : "+this._score);
+                System.out.println("Joueur : "+this.getId()+" Choix : "+this.getChoice()+" Score : "+this.getScore());
             }
         }
         catch(InterruptedException | IOException e){
@@ -55,15 +48,27 @@ public class Player extends Thread {
         }
     }
     
+	public boolean isLoose(int choice) {
+		return (_choice+1)%3 == choice;
+	}
+    
     public int getPlayerId(){
     	return _id;
     }
     
-	public boolean isLoose(int choice) {
-		return (_choice+1)%3 == choice;
-	}
+    /**
+     * Donne le score
+     * @return
+     */
+    public int getScore() { 
+        return _score;
+    }  
 	
-	public void initScore() {
+	public void initChoice() {
 		this._choice = -1;
 	}
+	
+    public int getChoice() { 
+        return _score;
+    } 
 }

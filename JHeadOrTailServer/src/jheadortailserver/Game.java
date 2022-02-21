@@ -88,8 +88,8 @@ public class Game {
         for (Player player : players) {
             writer.writeInt(player == null ? -1 : player.getScore());
             
-			//Réinitialise les scores pour attendre les joueurs lors de la prochaine partie
-            player.initScore();
+			//Réinitialise les choix pour attendre les joueurs lors de la prochaine partie
+            player.initChoice();
         }
         writer.flush();
     }
@@ -98,6 +98,4 @@ public class Game {
         System.out.printf("- Le joueur %d a quitté la partie\n", id);
         players.set(id - 1, null);
     }
-
-
 }
